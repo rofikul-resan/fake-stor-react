@@ -9,12 +9,21 @@ const ProductList = ({ products, addToCart }) => {
     </div>
   );
 };
+function Badge(props) {
+  console.log(props);
+  return (
+    <div className="badge badge-primary absolute right-2 top-2">
+      {props.children}
+    </div>
+  );
+}
 
 // product card
 function Card({ product, addToCart }) {
   const { title, price, image, category } = product;
   return (
-    <div className="card card-side bg-slate-200 shadow-xl p-3 ">
+    <div className="card card-side bg-slate-200 shadow-xl p-3 relative ">
+      {product.quantity && <Badge>{product.quantity}</Badge>}
       <figure className="flex-col">
         <img src={image} alt="" className="w-3/4 rounded-md mx-auto" />
         <p className="text-center py-2 font-semibold">{category}</p>

@@ -5,14 +5,33 @@ import ProductList from "./ProductLIst/ProductList";
 
 const Shop = () => {
   const [ProductLIst, setProductList] = useState([]);
+  const [cart, setCart] = useState([]);
   useEffect(() => {
     fetch("./products.json")
       .then((res) => res.json())
       .then((data) => setProductList(data));
   }, []);
 
+  // data from db
+
+  useEffect(() => {
+    const localData = localStorage.getItem("fake-stor");
+    const selectedProduct = [];
+    if (localData) {
+      const localObj = JSON.parse(localData);
+      for (const id in localObj) {
+        const eexist = ProductLIst.find((pd) => pd.id === +id);
+        if (eexist) {
+          eexist.quantity = localObj[id];
+          selectedProduct.push(eexist);
+        }
+      }
+      setCart(selectedProduct);
+    }
+  }, [ProductLIst]);
+
   // data for cart list
-  const [cart, setCart] = useState([]);
+
   function addToCart(product) {
     if (cart) {
       const eexist = cart.find((pd) => pd.id === product.id);
@@ -27,7 +46,7 @@ const Shop = () => {
     } else {
       setCart([product]);
     }
-    addToDb("pd-no-" + product.id);
+    addToDb(product.id);
   }
 
   return (

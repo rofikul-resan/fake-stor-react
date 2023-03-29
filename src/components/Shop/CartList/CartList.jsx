@@ -1,6 +1,7 @@
 import React from "react";
 
 const CartList = ({ cart }) => {
+  // console.log(cart[0]);
   let totalProduct = cart.reduce((pr, cr) => cr.quantity + pr, 0);
   let totalPrice = cart.reduce((pr, cr) => cr.price * cr.quantity + pr, 0);
   let tex = (totalPrice / 100) * 13.5;
