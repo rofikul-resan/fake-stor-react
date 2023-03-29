@@ -10,7 +10,6 @@ const ProductList = ({ products, addToCart }) => {
   );
 };
 function Badge(props) {
-  console.log(props);
   return (
     <div className="badge badge-primary absolute right-2 top-2">
       {props.children}
