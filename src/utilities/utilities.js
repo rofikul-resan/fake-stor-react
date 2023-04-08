@@ -35,7 +35,22 @@ function dataForCartFromDb(ProductLIst, setState) {
 }
 
 
+function addQuantityInDb(id, isAdd) {
+    const dbCartStr = localStorage.getItem("fake-stor");
+    if (dbCartStr) {
+        const dbCart = JSON.parse(dbCartStr);
+        let quantity = dbCart[id];
+        if (isAdd) {
+            dbCart[id] = +quantity + 1;
+        } else {
+            dbCart[id] = +quantity - 1;
+        }
+        localStorage.setItem("fake-stor", JSON.stringify(dbCart))
+    }
+}
+
 export {
     addToDb,
-    dataForCartFromDb
+    dataForCartFromDb,
+    addQuantityInDb
 }
