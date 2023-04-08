@@ -2,7 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import CartList from "../Shop/CartList/CartList";
 import { ShopContext } from "../../App";
 import ProductList from "../Shop/ProductLIst/ProductList";
-import { addQuantityInDb, dataForCartFromDb } from "../../utilities/utilities";
+import {
+  addQuantityInDb,
+  dataForCartFromDb,
+  removeItemFromDb,
+} from "../../utilities/utilities";
 import OrderItem from "./OrderItem";
 
 const Order = () => {
@@ -20,6 +24,12 @@ const Order = () => {
     setCart(allCartProduct);
   }
 
+  function deleteItem(id) {
+    removeItemFromDb(id);
+    const allCartProduct = dataForCartFromDb(ProductLIst);
+    setCart(allCartProduct);
+  }
+
   return (
     <div>
       <div className="grid grid-cols-Shop">
@@ -28,7 +38,7 @@ const Order = () => {
             <OrderItem
               product={pd}
               key={pd.id}
-              HandleQuantity={HandleQuantity}
+              handler={{ HandleQuantity, deleteItem }}
             ></OrderItem>
           ))}
         </div>

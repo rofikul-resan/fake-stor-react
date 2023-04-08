@@ -1,7 +1,8 @@
 import React from "react";
 import { BsTrashFill } from "react-icons/bs";
 
-function OrderItem({ product, HandleQuantity }) {
+function OrderItem({ product, handler }) {
+  const { HandleQuantity, deleteItem } = handler;
   const { quantity, price, image, title } = product;
   return (
     <div className="px-6 py-3 rounded-lg shadow-lg mb-8 border-2 grid grid-cols-cartItem gap-8 items-center w-10/12 mx-auto mt-5">
@@ -36,7 +37,10 @@ function OrderItem({ product, HandleQuantity }) {
           -
         </button>
       </div>
-      <button className="btn-sm btn text-xl font-bold  bg-red-700 text-white">
+      <button
+        onClick={() => deleteItem(product.id)}
+        className="btn-sm btn text-xl font-bold  bg-red-700 text-white"
+      >
         <BsTrashFill />
       </button>
     </div>

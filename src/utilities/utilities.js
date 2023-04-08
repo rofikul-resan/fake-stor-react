@@ -49,8 +49,15 @@ function addQuantityInDb(id, isAdd) {
     }
 }
 
+function removeItemFromDb(id) {
+    const dbCart = JSON.parse(localStorage.getItem("fake-stor"))
+    delete dbCart[id]
+    localStorage.setItem("fake-stor", JSON.stringify(dbCart))
+}
+
 export {
     addToDb,
     dataForCartFromDb,
-    addQuantityInDb
+    addQuantityInDb,
+    removeItemFromDb
 }
