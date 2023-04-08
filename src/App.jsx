@@ -1,16 +1,20 @@
-import React from "react";
+import React, { createContext, useContext, useState } from "react";
 import Header from "./components/Header/Header";
-import Shop from "./components/Shop/Shop";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
+
+export const ShopContext = createContext();
+export const CartContext = createContext();
 
 const App = () => {
-  // const [Shop, setShop] = useState("");
+  const ProductLIst = useLoaderData();
 
   function pageController(p) {}
   return (
     <div>
-      <Header control={pageController}></Header>
-      <Outlet />
+      <ShopContext.Provider value={ProductLIst}>
+        <Header control={pageController}></Header>
+        <Outlet />
+      </ShopContext.Provider>
     </div>
   );
 };

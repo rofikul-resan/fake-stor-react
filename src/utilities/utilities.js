@@ -1,5 +1,4 @@
 function addToDb(idInfo) {
-    console.log(idInfo);
     let selectedProduct = {};
     const localData = localStorage.getItem("fake-stor");
     if (!localData) {
@@ -17,8 +16,26 @@ function addToDb(idInfo) {
 
 }
 
+function dataForCartFromDb(ProductLIst, setState) {
+    // data from db
+    const localData = localStorage.getItem("fake-stor");
+    const selectedProduct = [];
+    if (localData) {
+        const localObj = JSON.parse(localData);
+        for (const id in localObj) {
+            const eexist = ProductLIst.find((pd) => pd.id === +id);
+            if (eexist) {
+                eexist.quantity = localObj[id];
+                selectedProduct.push(eexist);
+            }
+        }
+    }
+    console.log(selectedProduct);
+    return selectedProduct
+}
 
 
 export {
-    addToDb
+    addToDb,
+    dataForCartFromDb
 }

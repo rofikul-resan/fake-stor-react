@@ -10,9 +10,9 @@ const CartList = ({ cart }) => {
     <div className="sticky top-0 bg-orange-200 h-screen ">
       <h1 className="text-center text-xl font-semibold mt-8"> Order Summary</h1>
       <div className="ml-4 font-normal mt-4">
-        <p className="mt-2">Total Product : {totalProduct} </p>
-        <p className="mt-2">Total Price : {totalPrice.toFixed(2)} </p>
-        <p className="mt-2">Total Tex : {tex.toFixed(2)} </p>
+        <p className="mt-2">Total Product : ${totalProduct} </p>
+        <p className="mt-2">Total Price : ${totalPrice.toFixed(2)} </p>
+        <p className="mt-2">Total Tex : ${tex.toFixed(2)} </p>
         <p className="font-semibold mt-2">
           Net Total : {(totalPrice + tex).toFixed(2)}{" "}
         </p>
