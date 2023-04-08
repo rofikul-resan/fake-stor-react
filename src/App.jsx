@@ -1,18 +1,16 @@
 import React from "react";
 import Header from "./components/Header/Header";
 import Shop from "./components/Shop/Shop";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   // const [Shop, setShop] = useState("");
 
-  function pageController(p) {
-    console.log(p.target.href.pathname);
-    console.log(location.pathname);
-  }
+  function pageController(p) {}
   return (
     <div>
       <Header control={pageController}></Header>
-      <Shop></Shop>
+      <Outlet />
     </div>
   );
 };

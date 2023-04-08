@@ -2,15 +2,11 @@ import React, { useEffect, useState } from "react";
 import { addToDb } from "../../utilities/utilities";
 import CartList from "./CartList/CartList";
 import ProductList from "./ProductLIst/ProductList";
+import { useLoaderData } from "react-router-dom";
 
 const Shop = () => {
-  const [ProductLIst, setProductList] = useState([]);
   const [cart, setCart] = useState([]);
-  useEffect(() => {
-    fetch("./products.json")
-      .then((res) => res.json())
-      .then((data) => setProductList(data));
-  }, []);
+  const ProductLIst = useLoaderData();
 
   // data from db
 

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = ({ control }) => {
   //  control nav link
+
+  const navigator = useNavigate();
 
   return (
     <div>
@@ -10,16 +13,13 @@ const Header = ({ control }) => {
           <h1 className="text-white text-3xl">Fake-Store.Com</h1>
         </div>
         <div className="mr-20  text-white flex gap-4 items-center">
-          <Link control={control} href={"shop"}>
-            Shop
-          </Link>
-          <Link control={control} href={"order"}>
-            Order
-          </Link>
-          <Link control={control} href={"logIn"}>
-            Log in
-          </Link>
-          <button className="px-6 py-2 rounded-md bg-green-600 ml-28">
+          <Link to={"/"}>Shop</Link>
+          <Link to={"/order"}>Order</Link>
+          <Link to={"/logIn"}>Log in</Link>
+          <button
+            onClick={() => navigator("/singUp")}
+            className="px-6 py-2 rounded-md bg-green-600 ml-28"
+          >
             Sing Up
           </button>
         </div>
@@ -27,19 +27,5 @@ const Header = ({ control }) => {
     </div>
   );
 };
-
-function Link({ children, control, href }) {
-  return (
-    <a
-      href={href}
-      onClick={(e) => {
-        e.preventDefault();
-        control(e);
-      }}
-    >
-      {children}
-    </a>
-  );
-}
 
 export default Header;
